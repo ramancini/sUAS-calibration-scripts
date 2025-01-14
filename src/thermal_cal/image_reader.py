@@ -3,22 +3,13 @@ import numpy as np
 import spectral.io.envi as envi
 
 
-class Camera:
+class ImageReader:
     """
     Class for reading Thermal Images from ENVI Files
     """
 
-    def __init__(self, name: str):
-        """
-        Initialise a Camera object
-        Parameters:
-        name(str): Name for the camera
-        Raises:
-        ValueError: If name is not a string
-        """
-        if not isinstance(name, str) or not name.strip():
-            raise ValueError("Name must be a non-empty string")
-        self.name = name.strip()
+    def __init__(self):
+        pass
 
     def validate_file(self, filepath: str) -> bool:
         """
@@ -62,6 +53,3 @@ class Camera:
             return data
         except Exception as e:
             raise Exception(f"Error reading {filepath}: {e}")
-
-
-# end of file

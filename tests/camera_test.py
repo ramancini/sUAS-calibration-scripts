@@ -9,7 +9,7 @@ img = Tam.read(path)
 
 print(img.shape)
 
-test = img[:,:,500]
+test = img[:, :, 500]
 
 plt.figure(figsize=(8, 6))
 plt.imshow(test)

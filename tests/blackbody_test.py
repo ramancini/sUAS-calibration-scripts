@@ -15,9 +15,7 @@ radiance = blackbody.planck_radiance(Wavelength, Temperature)
 print(f"Radiance: {radiance} W/m^2/sr/µm")
 
 # Enter CSV Path of the RSR File
-csv_path = (
-    "data/cam_sheets/flir_rsr copy.csv"
-)
+csv_path = "data/cam_sheets/flir_rsr copy.csv"
 # Convert the csv into a pandas dataframe
 Datasheet = pd.read_csv(csv_path, sep=",", header=0)
 

@@ -1,0 +1,9 @@
+def combine(self,list):
+        comb_img = np.empty()
+        for i in list:
+            path = list(i)
+            Reader = ImageReader()
+            img = Reader.read(path)
+            comb_img = np.append(comb_img,img)
+            print(comb_img.shape)
+        return comb_img  

@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 import scipy.integrate as integrate
 
 
@@ -53,18 +54,23 @@ class Blackbody:
         denominator = wavelength**5 * (np.exp(c2) - 1)
         return numerator / denominator * 10e-7
 
-    def band_radiance(self, wavelengths, rsr, temperature):
+    def band_radiance(self, rsr_path, temperature):
         """
         Calculate the band radiance of a blackbody.
 
         Parameters:
         wavelengths: Array of wavelengths in micrometers.
-        rsr: Array of relative spectral responses.
+        rsr_path: Path to the relative spectral response file.
         temperature: Temperature in Celsius.
 
         Returns:
         Band radiance for pixel element.
         """
+        Datasheet = pd.read_csv(rsr_path, sep=",", header=0)
+        wavelength = Datasheet["Wavelength (µm)"]
+        wavelengths = wavelength.to_numpy()
+        rsr = Datasheet["Relative response"]
+        rsr = rsr.to_numpy()
         band_radiance = np.multiply(self.planck_radiance(wavelengths, temperature), rsr)
         total_radiance = integrate.trapezoid(band_radiance, wavelengths)
         return total_radiance

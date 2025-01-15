@@ -32,3 +32,25 @@ class CalUtils:
         comb_img = np.concatenate(images, axis=2)
 
         return comb_img
+    
+    def bad_pixel_map(self, image) -> np.ndarray:
+        """
+        Create a bad pixel map from an image.
+
+        Args:
+            image (np.ndarray): Image array
+
+        Returns:
+            np.ndarray: Bad pixel map
+        """
+
+        # Calculate the standard deviation of the image
+        std_dev = np.std(image, axis=2)
+
+
+        # Threshold the standard deviation to create a bad pixel map
+        bad_pixel_map = std_dev > 640
+
+        bad_pixel_map = bad_pixel_map.astype(int)
+
+        return bad_pixel_map

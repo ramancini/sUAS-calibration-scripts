@@ -31,10 +31,8 @@ class Calibrator:
         """
         blackbody = Blackbody()
 
-        radiance = blackbody.planck_radiance(wavelength, temperature)
-        radiance = (
-            5.67e-8 * (temperature + 273.15) ** 4
-        )  # Stefan-Boltzmann Law, maybe works?
+        #radiance = blackbody.planck_radiance(wavelength, temperature)
+        radiance = 5.67e-8 * (temperature +273.15) ** 4 # Stefan-Boltzmann Law, maybe works?
         bg_radiance = blackbody.planck_radiance(wavelength, temperature_chamber)
         band_radiance = blackbody.band_radiance(rsr_path, temperature)
 

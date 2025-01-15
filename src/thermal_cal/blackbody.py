@@ -29,7 +29,7 @@ class Blackbody:
         """
         temperature = temperature + 273.15  # Convert temperature to Kelvin
         wavelength = wavelength * 1e-6  # Convert micrometers to meters
-        c1 = 2 * np.pi * self.h * self.c**2
+        c1 = 2 * np.pi * self.h * (self.c**2)
         c2 = self.h * self.c / (self.k * temperature * wavelength)
         numerator = c1
         denominator = wavelength**5 * (np.exp(c2) - 1)
@@ -48,11 +48,14 @@ class Blackbody:
         """
         temperature = temperature + 273.15  # Convert temperature to Kelvin
         wavelength = wavelength * 1e-6  # Convert micrometers to meters
-        c1 = 2 * self.h * self.c**2
+        c1 = 2 * np.pi * self.h * (self.c**2)
         c2 = self.h * self.c / (self.k * temperature * wavelength)
         numerator = c1
         denominator = wavelength**5 * (np.exp(c2) - 1)
-        return numerator / denominator * 10e-7
+
+        radiance = (numerator / denominator * 10e-7) / np.pi
+
+        return radiance
 
     def band_radiance(self, rsr_path, temperature):
         """

@@ -17,10 +17,9 @@ hist_img = np.histogram(img)
 
 print(hist_img)
 
-plt.hist(hist_img, bins= 'auto')  
+plt.hist(hist_img, bins="auto")
 plt.title("Histogram")
 plt.savefig("Histogram2.png")
-
 
 
 plt.figure(figsize=(8, 6))

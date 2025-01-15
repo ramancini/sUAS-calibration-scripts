@@ -21,12 +21,13 @@ class Blackbody:
 
         Parameters:
         wavelength: Wavelength in micrometers.
-        temperature: Temperature in Kelvin.
+        temperature: Temperature in Celsius.
 
         Returns:
         Exitance in W/m^2/sr/µm.
         """
-        wavelength = wavelength * 1e-6  # Convert wavelength to meters
+        temperature = temperature + 273.15  # Convert temperature to Kelvin
+        wavelength = wavelength * 1e-6  # Convert micrometers to meters
         c1 = 2 * np.pi * self.h * self.c**2
         c2 = self.h * self.c / (self.k * temperature * wavelength)
         numerator = c1
@@ -39,12 +40,13 @@ class Blackbody:
 
         Parameters:
         wavelength: Wavelength in micrometers.
-        temperature: Temperature in Kelvin.
+        temperature: Temperature in Celsius.
 
         Returns:
         Radiance in W/m^2/sr/µm.
         """
-        wavelength = wavelength * 1e-6  # Convert wavelength to meters
+        temperature = temperature + 273.15  # Convert temperature to Kelvin
+        wavelength = wavelength * 1e-6  # Convert micrometers to meters
         c1 = 2 * self.h * self.c**2
         c2 = self.h * self.c / (self.k * temperature * wavelength)
         numerator = c1
@@ -63,7 +65,6 @@ class Blackbody:
         Returns:
         Band radiance for pixel element.
         """
-        temp = temperature + 273.15  # Convert temperature to Kelvin
-        band_radiance = np.multiply(self.planck_radiance(wavelengths, temp), rsr)
+        band_radiance = np.multiply(self.planck_radiance(wavelengths, temperature), rsr)
         total_radiance = integrate.trapezoid(band_radiance, wavelengths)
         return total_radiance

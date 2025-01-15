@@ -6,7 +6,7 @@ class CalUtils:
     def __init__(self):
         pass
 
-    def combine(self, file_list):
+    def combine(self, file_list) -> np.ndarray:
         """
         Combine images from a list of file paths into a single numpy array.
 
@@ -16,6 +16,7 @@ class CalUtils:
         Returns:
             np.ndarray: Combined image array
         """
+
         # Initialize an empty list to store images
         images = []
 
@@ -27,7 +28,7 @@ class CalUtils:
             img = reader.read(path)
             images.append(img)
 
-        # Stack images along a new axis
+        # Stack images along the third axis
         comb_img = np.concatenate(images, axis=2)
 
         return comb_img

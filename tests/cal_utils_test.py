@@ -9,10 +9,11 @@ path_3 = "/local/data/imgs589/data/MX1/raw/100045_tam_long_20241125_22_22_2023_0
 
 search = FileSearch()
 
-files = search.search(path_3)
+files = search.search(path)
 
 cal = CalUtils()
 
 final_img = cal.combine(files)
 
 print(final_img.shape)
+print(final_img.size)

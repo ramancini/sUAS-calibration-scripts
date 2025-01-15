@@ -14,4 +14,5 @@ test = img[:, :, 500]
 plt.figure(figsize=(8, 6))
 plt.imshow(test)
 plt.colorbar()
+plt.savefig("Test.png")
 plt.show()

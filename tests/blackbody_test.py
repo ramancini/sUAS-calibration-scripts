@@ -5,12 +5,11 @@ from src.thermal_cal.blackbody import Blackbody
 blackbody = Blackbody()
 
 Wavelength = 8  # Wavelength in micrometers
-Temperature = 200  # Temperature in Kelvin
-exitance = blackbody.planck_exitance(Wavelength, Temperature)
-print(f"Exitance: {exitance} W/m^2/sr/µm")
+Temperature = 20  # Temperature in Celsius
 
-Wavelength = 8  # Wavelength in micrometers
-Temperature = 200  # Temperature in Kelvin
+exitance = blackbody.planck_exitance(Wavelength, Temperature)
+print(f"Exitance: {exitance} W/m^2/")
+
 radiance = blackbody.planck_radiance(Wavelength, Temperature)
 print(f"Radiance: {radiance} W/m^2/sr/µm")
 
@@ -26,7 +25,7 @@ wavelengths = wavelength.to_numpy()
 rsr = Datasheet["Relative response"]
 rsr = rsr.to_numpy()
 
-Temperature = 30  # Temperature in Celsius
+# Calculate the band radiance with RSR
 band_radiance = blackbody.band_radiance(wavelengths, rsr, Temperature)
 
 print(f"Band Radiance: {band_radiance} W/m^2/sr")

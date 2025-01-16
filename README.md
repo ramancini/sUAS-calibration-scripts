@@ -24,7 +24,7 @@ This repository contains scripts for calibrating small Unmanned Aerial Systems (
     ```
 2. Navigate to the project directory:
     ```bash
-    cd sUAS-calibration-scripts
+    cd sUAS-calibration-scripts 
     ```
 3. Install the required dependencies:
     ```bash
@@ -32,7 +32,15 @@ This repository contains scripts for calibrating small Unmanned Aerial Systems (
     ```
 4. Install the package in editable mode:
     ```bash
-    pip install -e .
+    pip install -e.
+    ```
+5. Set up Conda Env
+    ```bash
+    conda env create --name thermal_cal --file environment.yml
+    ```
+6. Activate the Conda Env
+    ```bash
+    conda env activate thermal_cal
     ```
 
 ## Usage

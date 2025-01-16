@@ -2,6 +2,8 @@
 
 This repository contains scripts for calibrating small Unmanned Aerial Systems (sUAS) cameras. The scripts are designed to process and analyze camera data to ensure accurate calibration for optimal performance.
 
+![image](Thermal_Cal3.drawio.png)
+
 ## Features
 
 - Automated calibration process
@@ -20,7 +22,7 @@ This repository contains scripts for calibrating small Unmanned Aerial Systems (
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/sUAS-calibration-scripts.git
+    git clone https://github.com/yourusername/sUAS-calibration-scripts.git #Skip if using Github UI
     ```
 2. Navigate to the project directory:
     ```bash

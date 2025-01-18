@@ -7,16 +7,9 @@ This repository contains scripts for calibrating small Unmanned Aerial Systems (
 ## Features
 
 - Automated calibration process
-- Support for various camera models
-- Data analysis and visualization tools
-- Detailed logging and reporting
 
 ## Requirements
 
-- Python 3.x
-- NumPy
-- OpenCV
-- Matplotlib
 
 ## Installation
 
@@ -50,7 +43,7 @@ This repository contains scripts for calibrating small Unmanned Aerial Systems (
 1. Prepare your camera data and place it in the `data/cam_sheets` directory.
 2. Run the calibration script:
     ```bash
-    python calibrate.py
+    python radiometric_calibration.py #This will save the calibration coeffs, remember to input args!
     ```
 3. Review the output and logs for calibration results.
 

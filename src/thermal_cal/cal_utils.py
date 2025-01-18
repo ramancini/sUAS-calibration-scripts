@@ -1,5 +1,6 @@
 import numpy as np
 from src.thermal_cal.image_reader import ImageReader
+from tqdm import tqdm
 
 
 class CalUtils:
@@ -24,7 +25,7 @@ class CalUtils:
         reader = ImageReader()
 
         # Read each image and append to the list
-        for path in file_list:
+        for path in tqdm(file_list):
             img = reader.read(path)
             images.append(img)
 
@@ -65,10 +66,10 @@ class CalUtils:
             np.ndarray: Quantized image
         """
 
-        # Normalize the image
-        image = (image - np.min(image)) / (np.max(image) - np.min(image))
+        # Normalize the image CONFIRM WITH CARL THIS IS CORRECT!!!!!
+        # image = (image - np.min(image)) / (np.max(image) - np.min(image))
 
         # Quantize the image to 8-bit
-        quantized_image = (image * 255).astype(np.uint8)
+        quantized_image = (image / 255).astype(np.uint8)
 
         return quantized_image

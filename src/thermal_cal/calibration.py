@@ -1,5 +1,3 @@
-import pandas as pd
-
 from src.thermal_cal.blackbody import Blackbody
 
 
@@ -12,7 +10,6 @@ class Calibrator:
         temperature,
         temperature_chamber,
         rsr_path,
-        wavelength,
         emissivity=1,
         reflectivity=0,
     ):
@@ -31,27 +28,15 @@ class Calibrator:
         """
         blackbody = Blackbody()
 
-        #radiance = blackbody.planck_radiance(wavelength, temperature)
-        radiance = 5.67e-8 * (temperature +273.15) ** 4 # Stefan-Boltzmann Law, maybe works?
-        bg_radiance = blackbody.planck_radiance(wavelength, temperature_chamber)
+        radiance = (
+            5.67e-8 * (temperature + 273.15) ** 4
+        )  # Stefan-Boltzmann Law for total radiance
+        bg_radiance = 5.67e-8 * (temperature_chamber + 273.15) ** 4
         band_radiance = blackbody.band_radiance(rsr_path, temperature)
-
-        # Convert the csv into a pandas dataframe
-        Datasheet = pd.read_csv(rsr_path, sep=",", header=0)
-
-        result = Datasheet.loc[Datasheet["Wavelength (µm)"] == wavelength]
-
-        # Get the Responsivity value in the specified next column
-        if not result.empty:
-            relative_response = result["Relative response"].values[0]
-        else:
-            raise ValueError(
-                "Responsivity value not found for the specified wavelength"
-            )
 
         numerator = (
             (emissivity * radiance) + (reflectivity * bg_radiance)
-        ) * relative_response
+        ) * band_radiance
 
         radiance_on_sensor = numerator / band_radiance
 
@@ -89,12 +74,13 @@ class Calibrator:
         return offset
 
     def image_gain(self, image, radiance, offset=0, instrument_radiance=0):
-        gain_image = image - offset
+        gain_image = image
         gain_image = gain_image / (radiance - instrument_radiance)
 
         return gain_image
 
-    def image_offset(self, image, radiance, gain, instrument_radiance=0):
-        offset_image = image / (gain * (radiance - instrument_radiance))
+    def image_offset(self, image, img_gain, radiance):
+        gain_term = img_gain * radiance
+        offset_image = image / gain_term
 
         return offset_image

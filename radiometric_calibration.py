@@ -66,9 +66,3 @@ if __name__ == "__main__":
     np.save("results/calibration_coeff/bias_img.npy", bias_img, allow_pickle=False)
 
     print("Calibration Coeff Saved!")
-
-
-# path = "/local/data/imgs589/data/calibration/raw/tam640/20241119/295.15/295.15/raw_2000.hdr"
-# Tameris = ImageReader()
-
-# img = Tameris.read(path)

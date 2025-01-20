@@ -1,10 +1,9 @@
 from src.thermal_cal.image_reader import ImageReader
 from matplotlib import pyplot as plt
-import numpy as np
 
 path = "/local/data/imgs589/data/MX1/raw/100027_TAM_22_10_2023_09_10_23_33_17/tam640/raw_2000.hdr"
 
-path = "/local/data/imgs589/data/calibration/raw/tam640/20241119/295.15/295.15/raw_2000.hdr"
+path = "/local/data/imgs589/field_data/100060_20250117_Foil_2025_01_17_16_47_13/tam640/raw_0.hdr"
 
 Tam = ImageReader()
 
@@ -14,18 +13,10 @@ print(img.shape)
 
 test = img[:, :, 500]
 
-
-hist_img = np.histogram(img)
-
-print(hist_img)
-
-plt.hist(hist_img, bins="auto")
-plt.title("Histogram")
-plt.savefig("Histogram2.png")
-
+print(img)
 
 plt.figure(figsize=(8, 6))
 plt.imshow(test)
 plt.colorbar()
-plt.savefig("Test.png")
+plt.savefig("data/cam_sheets/images/Test.png")
 plt.show()

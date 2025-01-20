@@ -25,7 +25,7 @@ class CalUtils:
         reader = ImageReader()
 
         # Read each image and append to the list
-        for path in tqdm(file_list):
+        for path in tqdm(file_list, desc="Combining Images"):
             img = reader.read(path)
             images.append(img)
 

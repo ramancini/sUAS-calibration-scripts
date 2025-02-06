@@ -9,6 +9,15 @@ path_3 = "/local/data/imgs589/data/MX1/raw/100045_tam_long_20241125_22_22_2023_0
 
 search = FileSearch()
 
-files = search.search(path_3)
+# files = search.search(path_3)
 
-print(files)
+# print(files)
+
+
+file_path = "/home/cnspci/vcu_rice_river/emissivity/20250130/1300/grass.dwc"
+
+test_path2 = "/home/cnspci/vcu_rice_river/emissivity/20250130/1300/grass.sac"
+
+data = search.emmissivity_search(test_path2)
+
+print(data)

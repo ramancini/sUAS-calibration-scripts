@@ -16,7 +16,6 @@ class Calibrator:
         """
         Calculate the radiance on the sensor using the Planck's law and the RSR of the sensor.
         Parameters:
-        wavelength: Wavelength in micrometers.
         temperature: Temperature in Celsius.
         temperature_chamber: Temperature of the chamber in Celsius.
         rsr_path: Path to the RSR file as a csv.

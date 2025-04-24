@@ -60,6 +60,8 @@ if __name__ == "__main__":
 
     image_gain = np.mean(image_gain, axis=2)
 
+    print(image_gain)
+
     bias_img = np.mean(bias_img, axis=2)
 
     np.save("results/calibration_coeff/gain_img.npy", image_gain, allow_pickle=False)

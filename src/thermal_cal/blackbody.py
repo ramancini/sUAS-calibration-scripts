@@ -40,7 +40,7 @@ class Blackbody:
         Calculate the radiance of a blackbody.
 
         Parameters:
-        wavelength: Wavelength in micrometers.
+        wavelength: Wavelength in microns
         temperature: Temperature in Celsius.
 
         Returns:

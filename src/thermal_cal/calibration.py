@@ -16,7 +16,6 @@ class Calibrator:
         """
         Calculate the radiance on the sensor using the Planck's law and the RSR of the sensor.
         Parameters:
-        wavelength: Wavelength in micrometers.
         temperature: Temperature in Celsius.
         temperature_chamber: Temperature of the chamber in Celsius.
         rsr_path: Path to the RSR file as a csv.
@@ -41,6 +40,37 @@ class Calibrator:
         radiance_on_sensor = numerator / band_radiance
 
         return radiance_on_sensor
+
+    def calibrate_images(self, image_cube, radiance_cube):
+        """
+        Calibrates the image digital counts to radiance using linear regression
+        Parameters:
+        image_cube: cube of images, channels are time
+        radiance: cube of radiance values on sensor, channels are time
+
+        Returns:
+        calibration coeffecients: image file of calibation coeffiecents
+        """
+        rows, cols = image_cube.shape
+        calibration_cube = np.zeros(rows, cols)
+        # Iterating through image data
+        for i in range(rows):
+            for j in range(cols):
+                digital_counts = image_cube[i, j, :]
+                radiance_vals = radiance_cube[i, j, :]
+                model = LinearRegression()
+
+                # Fit the model to the data
+                model.fit(digital_counts, radiance_vals)
+
+                # Get the slope (coefficient) and intercept
+                slope = model.coef_[0]
+                intercept = model.intercept_
+
+                calibration_cube[i, j, 0] = slope
+                calibration_cube[i, j, 1] = intercept
+
+        return calibration_cube
 
     def gain_calc(self, radiance, digital_count, offset=0, instrument_radiance=0):
         """

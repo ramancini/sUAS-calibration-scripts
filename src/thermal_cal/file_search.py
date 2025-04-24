@@ -1,5 +1,6 @@
 import os
 import re
+import numpy as np
 
 
 class FileSearch:
@@ -29,3 +30,16 @@ class FileSearch:
 
         # print(hdr_files)
         return full_paths
+
+    def emmissivity_search(self, filepath) -> np.ndarray:
+        """
+        Load the emmissivity data from the specified file path.
+
+        Args:
+            filepath (str): The file path to the emmissivity data
+
+        Returns:
+            np.ndarray: The emmissivity data
+        """
+        data = np.loadtxt(filepath, delimiter=",", skiprows=1)
+        return data

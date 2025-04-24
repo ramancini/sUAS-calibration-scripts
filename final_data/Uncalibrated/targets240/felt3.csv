@@ -1,0 +1,15 @@
+; Number of ROIs: 1
+; File Dimension: 640 x 480
+;
+; ROI name: ROI #51
+; ROI rgb value: {255, 0, 255}
+; ROI npts: 6
+;
+; File X, File Y, B1
+;
+ 332,  300,  65280
+ 333,  300,  65292
+ 334,  300,  65284
+ 332,  301,  65287
+ 333,  301,  65284
+ 334,  301,  65293

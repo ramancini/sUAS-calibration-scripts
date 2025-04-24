@@ -1,3 +1,4 @@
+# Parker Code
 from src.thermal_cal.calibration import Calibrator
 from src.thermal_cal.image_reader import ImageReader
 from src.thermal_cal.file_search import FileSearch
